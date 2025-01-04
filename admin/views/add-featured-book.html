@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Featured Book</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Add Featured Book</h1>
+      <form id="addFeaturedBookForm" method="POST" action="/admin/featured/add">
+        <select name="book_id">
+          <!-- Populate with books from DB -->
+          {{#each books}}
+          <option value="{{this.book_id}}">{{this.name}}</option>
+          {{/each}}
+        </select>
+        <select name="section">
+          <option value="Best Fiction">Best Fiction</option>
+          <option value="Top Trending">Top Trending</option>
+          <option value="Best Discounted">Best Discounted</option>
+          <option value="Best Sales">Best Sales</option>
+        </select>
+        <button type="submit">Add Featured Book</button>
+      </form>
+    </div>
+  </body>
+</html>

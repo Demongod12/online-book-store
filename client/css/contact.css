@@ -1,0 +1,45 @@
+.contact-info{
+    margin: 20px;
+    padding: 0;
+}
+
+/*center the heading for contact*/
+.contact-info .contact-us{
+    text-align: center;
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+/*center and flex the contact details */
+.contact-info .contact-details{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 0 10px;
+    text-align: center;
+}
+
+.contact-info .contact-item i{
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.contact-info .contact-item p {
+    margin-top: 0;
+    font-size: 1rem;
+    line-height: 1.4;
+    text-align: center;
+}
+
+/* Styling for the Google map */
+.contact-info .google-map{
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    border: 2px solid #ddd; 
+    border-radius: 8px;
+    overflow: hidden;
+}
+

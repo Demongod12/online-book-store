@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact</title>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/shared.css" />
+    <link rel="stylesheet" href="../css/contact.css" />
+  </head>
+  <body>
+    <header>
+      <div class="nav-wrapper">
+        <!-- Logo Section -->
+        <div class="logo-container">
+          <img
+            src="https://via.placeholder.com/40"
+            alt="Bookly Logo"
+            class="logo"
+          />
+          <span class="site-name">Bookly</span>
+        </div>
+
+        <!-- Search Section -->
+        <div class="search-container">
+          <input
+            type="text"
+            class="search-input"
+            placeholder="Search here..."
+          />
+          <i class="bx bx-search search-icon"></i>
+        </div>
+
+        <!-- Icons Section -->
+        <div class="icons-container">
+          <i id="theme-icon" class="bx bx-sun"></i>
+          <i
+            class="bx bx-cart"
+            aria-label="View cart"
+            onclick="toggleCart()"
+          ></i>
+          <i class="bx bx-user" onclick="handleUserClick()"></i>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!--contact info-->
+    <div class="contact-info">
+      <div class="contact-us">
+        <h1>Contact Us</h1>
+        <p>We would like to hear from you!</p>
+      </div>
+      <div class="contact-details">
+        <!--kathmandu and whatsapp line in one div-->
+        <div class="contact-item">
+          <i class="bx bxs-phone"></i>
+          <p>kathmandu</p>
+          <p>+977-9843578650</p>
+
+          <i class="bx bxl-whatsapp"></i>
+          <p>Whatsapp</p>
+          <p>+977-9803768422</p>
+        </div>
+
+        <!--General and order inquiries-->
+        <div class="contact-item">
+          <i class="bx bx-envelope"></i>
+          <p>General Inquiries</p>
+          <p>books.123@gmail.com</p>
+
+          <i class="bx bx-envelope"></i>
+          <p>Order related</p>
+          <p>book.sales@gmail.com</p>
+        </div>
+      </div>
+      <div class="google-map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14131.199497913745!2d85.21636580137645!3d27.692579576143437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb230e5479efb1%3A0xa28ed7f729030fd3!2sThankot%2C%20Chandragiri!5e0!3m2!1sen!2snp!4v1735719575764!5m2!1sen!2snp"
+          width="800"
+          height="600"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          title="location"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+
+    <!--footer section-->
+    <footer class="wrapper-footer">
+      <!--footer info: Brand and address-->
+      <div class="footer-brand-info">
+        <h1>Madnala</h1>
+        <p>East st-1990</p>
+        <p>Kathmandu,Thankot</p>
+      </div>
+
+      <!--footer links: navigation links-->
+      <div class="footer-nav-links">
+        <h1>Useful Links</h1>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="shop.html">Shop</a>
+      </div>
+
+      <!--footer additional information-->
+      <div class="footer-additional-information">
+        <h1>Information</h1>
+        <p>Supplies</p>
+        <p>New Products</p>
+        <p>Delivery & return</p>
+        <p>Gift cards</p>
+      </div>
+
+      <!--footer support and policies-->
+      <div class="footer-support">
+        <h1>Support</h1>
+        <p>privacy & policy</p>
+        <p>Support</p>
+        <p>Disclaimer</p>
+        <p>FAQ</p>
+      </div>
+
+      <!--footer extra-->
+      <div class="footer-extra">
+        <p>@ 2025, book.com.np</p>
+      </div>
+    </footer>
+    <script src="../js/index.js"></script>
+    <script src="../node.js/function.js"></script>
+  </body>
+</html>

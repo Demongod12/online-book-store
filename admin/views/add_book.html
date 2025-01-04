@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add New Books</title>
+    <link rel="stylesheet" href="/css/admin.css" />
+  </head>
+  <body>
+    <div class="add-book-container">
+      <h2>Add New Books</h2>
+      <form action="/admin/books" method="post">
+        <input type="text" name="image-url" placeholder="image_url" required />
+
+        <label for="name">Book Name:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" required />
+
+        <label for="description">Description:</label>
+        <textarea
+          name="description"
+          id="description"
+          name="description"
+          required
+        ></textarea>
+
+        <label for="price">Price:</label>
+        <input type="number" name="price" id="price" required />
+
+        <label for="page">Page Count:</label>
+        <input type="number" name="page" id="page" required />
+
+        <label for="weight">Weight:</label>
+        <input type="number" name="weight" id="weight" required />
+
+        <label for="isbn">ISBN:</label>
+        <input type="text" id="isbn" name="isbn" required />
+
+        <label for="language">Language:</label>
+        <input type="text" id="language" name="language" required />
+
+        <label>
+          Bestseller
+          <input type="checkbox" name="is_bestseller" value="1" />
+        </label>
+
+        <label for="stock_status">Stock Status:</label>
+        <select name="stock_status" id="stock_status" required>
+          <option value="in stock">In Stock</option>
+          <option value="out of stock">Out of Stock</option>
+        </select>
+
+        <button type="submit">Add Book</button>
+      </form>
+    </div>
+  </body>
+</html>

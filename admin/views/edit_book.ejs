@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/admin/books/{{book.id}}" method="post">
+        <input type="hidden" name="_method" value="PUT">
+        <label for="name">Book Name:</label>
+        <input type="text" name="name" id="name" value="{{book.name}}" required>
+
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" value="{{book.author}}" required>
+
+        <label for="description">Description:</label>
+        <textarea name="description" id="description" required>{{book.description}}</textarea>
+
+        <label for="price">Price:</label>
+        <input type="number" name="price" id="price" value="{{book.price}}" required>
+
+        <label for="stock_status">Stock Status:</label>
+        <select name="stock_status" id="stock_status" required>
+            <option value="in stock" {{book.stock_status === 'in stock' ? 'selected' : ''}}>In stock</option>
+            <option value="out of stock" {{book.stock_status === 'out of stock' ? 'selected' : ''}}>Out of stock</option>
+
+            <label for="isbn">ISBN:</label>
+            <input type="text" id="isbn" name="isbn" value="{{book.isbn}}" required>
+        </select>
+    </form>
+</body>
+</html>

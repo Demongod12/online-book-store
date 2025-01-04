@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookly Header</title>
+  <link
+    href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="../css/shared.css">
+  <link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+  <header>
+    <div class="nav-wrapper">
+      <!-- Logo Section -->
+      <div class="logo-container">
+        <img src="https://via.placeholder.com/40" alt="Bookly Logo" class="logo">
+        <span class="site-name">Bookly</span>
+      </div>
+
+      <!-- Search Section -->
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search here...">
+        <i class='bx bx-search search-icon'></i>
+      </div>
+
+      <!-- Icons Section -->
+      <div class="icons-container">
+        <i id="theme-icon" class="bx bx-sun"></i>
+        <i class='bx bx-cart' aria-label="View cart" onclick="toggleCart()"></i>
+        <i class='bx bx-user' aria-label="view user" onclick="handleUserClick()"></i>
+      </div>
+    </div>
+
+    <!-- Navigation Links -->
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!--footer section-->
+  <footer class="wrapper-footer">
+
+    <!--footer info: Brand and address-->
+    <div class="footer-brand-info">
+      <h1>Madnala</h1>
+      <p>East st-1990</p>
+      <p>Kathmandu,Thankot</p>
+    </div>
+
+    <!--footer links: navigation links-->
+    <div class="footer-nav-links">
+      <h1>Useful Links</h1>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="shop.html">Shop</a>
+    </div>
+
+    <!--footer additional information-->
+    <div class="footer-additional-information">
+      <h1>Information</h1>
+      <p>Supplies</p>
+      <p>New Products</p>
+      <p>Delivery & return</p>
+      <p>Gift cards</p>
+    </div>
+
+    <!--footer support and policies-->
+    <div class="footer-support">
+      <h1>Support</h1>
+      <p>privacy & policy</p>
+      <p>Support</p>
+      <p>Disclaimer</p>
+      <p>FAQ</p>
+    </div>
+
+    <!--footer extra-->
+    <div class="footer-extra">
+      <p>@ 2025, book.com.np</p>
+    </div>
+  </footer>
+
+  <!--this div tag is for cart icon to create canvas in the web-->
+  <div id="offcanvas-cart" class="cart"></div>
+  <script src="../js/index.js"></script>
+  <script src="../node.js/function.js"></script>
+</body>
+</html>

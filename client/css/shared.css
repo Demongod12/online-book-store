@@ -1,0 +1,232 @@
+/* General Reset */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+  
+header {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+  
+/* Navigation Wrapper */
+.nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f8f1f1;
+}
+  
+/* Logo Section */
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+  
+.logo {
+    width: 40px;
+    height: 40px;
+}
+  
+.site-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+  
+/* Search Section */
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+  
+.search-input {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    outline: none;
+    width: 200px;
+    transition: width 0.3s ease;
+}
+  
+.search-icon {
+    position: absolute;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #666;
+}
+  
+/* Icons Section */
+.icons-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+  
+.icons-container i {
+    font-size: 24px;
+    cursor: pointer;
+}
+  
+.icons-container i:hover {
+    transform: scale(1.1);
+}
+  
+/* Navigation Links */
+nav {
+    background-color: #1e7c34;
+}
+  
+.nav-links {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+    gap: 30px;
+}
+  
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+}
+  
+.nav-links a:hover {
+    text-decoration: underline;
+}
+  
+/* Dark Mode */
+body.dark-mode{
+    background-color: #333;
+    color: #fff;
+}
+
+body.dark-mode .nav-wrapper{
+    background-color: #444;
+}
+
+body.dark-mode .search-input{
+    background-color: #555;
+    color: #fff;
+}
+
+body.dark-mode .icons-container i{
+    color: #fff;
+}
+
+/*Footer*/
+body .wrapper-footer{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    color: #fff;
+    background-color: hsl(134, 61%, 30%);
+    margin-top: 10px;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.footer-wrapper div {
+    flex: 1;
+    margin: 10px;
+  }
+
+.wrapper-footer h1 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.wrapper-footer p, .wrapper-footer a {
+    font-size: 14px;
+    line-height: 1.5;
+    display: block;
+    text-decoration: none;
+    color: #fff;
+}
+
+.wrapper-footer a:hover {
+    text-decoration: underline;
+}
+
+.wrapper-footer .footer-nav-links p{
+    display: flex;
+}
+
+.wrapper-footer .footer-extra{
+    flex-basis: 100%;
+    text-align: center;
+}
+
+/* Responsive Design for Mobile and Tablets */
+@media (max-width: 768px) {
+    .nav-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .search-container {
+        max-width: 100%;
+    }
+
+    .icons-container {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .logo-container {
+        margin-bottom: 10px;
+    }
+
+    .search-input {
+        width: 100%;
+        padding: 12px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+}
+
+/* For very small devices (Phones in portrait mode) */
+@media (max-width: 480px) {
+    .logo {
+        width: 35px;
+        height: 35px;
+    }
+
+    .site-name {
+        font-size: 18px;
+    }
+
+    .search-input {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .icons-container i {
+        font-size: 20px;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+
+    .nav-links {
+        gap: 10px;
+    }
+}

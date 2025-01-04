@@ -1,0 +1,105 @@
+/* General Styles for About Us Section */
+.wrapper-about{
+  margin: 0;
+  padding: 0;
+}
+
+/*About us section for heading and img*/
+.wrapper-about .about-us{
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
+
+.wrapper-about .about-us h1{
+  position: absolute;
+  color: #fff;
+  font-size: 36px;
+  font-weight: bold;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  text-align: center;
+}
+
+.wrapper-about .about-us img{
+  width: 100%; /*image takes full width*/
+  height: 100%;
+  object-fit: cover; /*image is filled without distortion*/
+}
+
+.wrapper-about .about-who{
+  padding: 20px;
+}
+
+.wrapper-about .about-who h1{
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1;
+}
+
+.wrapper-about .about-who p{
+  font-size: 30px; 
+  width: 50%; /* Restrict width for better alignment */
+  margin: 0 auto; /* Center the text */
+  line-height: 1.8; 
+  text-align: center; 
+}
+
+/*client testominals*/
+.testimonials {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.testimonials h2 {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.testimonials .testimonials-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.testimonials-container .testimonial-item{
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  padding: 20px;
+  text-align: center;
+  flex: 1;
+  max-width: 30%;
+  min-width: 250px;
+}
+
+.testimonial-item p{
+  font-size: 16px;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.client-info .emoji{
+  font-size: 24px;
+}
+
+/* Responsive Design for About Section */
+@media (max-width: 768px) {
+  .wrapper-about .about-us h1 {
+      font-size: 28px; /* Adjust font size on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .wrapper-about .about-us h1 {
+      font-size: 24px; /* Adjust font size even more on very small screens */
+  }
+}

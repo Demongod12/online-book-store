@@ -1,0 +1,42 @@
+body{
+  font-family: 'Times New Roman', Times, serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Cart container hidden by default */
+.cart {
+  position: fixed;
+  top: 0;
+  right: -100%; /* Start off-screen */
+  width: 450px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  z-index: 1000;
+  transition: right 0.3s ease;
+}
+
+/* Show cart when active */
+.cart.active {
+  right: 0;
+}
+
+/* Close button */
+.cart .close-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
+}
+
+/*Cart info*/
+.cart .wrapper .header{
+  margin-top: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
