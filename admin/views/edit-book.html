@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Book</title>
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+    <h1>Edit Book</h1>
+
+    <form id="edit-book-form">
+        <input type="hidden" id="book-id" name="book_id">
+
+        <label for="name">Book Title:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" required>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea>
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" required>
+
+        <label for="page_count">Page Count:</label>
+        <input type="number" id="page_count" name="page_count" required>
+
+        <label for="isbn">ISBN:</label>
+        <input type="text" id="isbn" name="isbn" required>
+
+        <label for="language">Language:</label>
+        <input type="text" id="language" name="language" required>
+
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre" name="genre" required>
+
+        <label for="image_url">Image URL:</label>
+        <input type="text" id="image_url" name="image_url" required>
+
+        <label for="weight">Weight:</label>
+        <input type="number" id="weight" name="weight" required>
+
+        <label for="stock_status">Stock Status:</label>
+        <select id="stock_status" name="stock_status">
+            <option value="in_stock">In Stock</option>
+            <option value="out_of_stock">Out of Stock</option>
+        </select>
+
+        <label for="is_bestseller">Is Bestseller:</label>
+        <input type="checkbox" id="is_bestseller" name="is_bestseller">
+
+        <label for="discount">Discount:</label>
+        <input type="number" id="discount" name="discount" min="0" max="100">
+
+        <label for="featured_section">Featured Section:</label>
+        <input type="text" id="featured_section" name="featured_section">
+
+        <button type="submit">Save Changes</button>
+    </form>
+
+    <script>
+        // Fetch the book data from the server based on the book_id in the URL
+        async function loadBookData() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const bookId = urlParams.get('id');
+            if (!bookId) {
+                alert("Book ID is missing!");
+                return;
+            }
+
+            const response = await fetch(`/api/books/${bookId}`);
+            const book = await response.json();
+
+            // Fill the form with the existing book data
+            document.getElementById('book-id').value = book.book_id;
+            document.getElementById('name').value = book.name;
+            document.getElementById('author').value = book.author;
+            document.getElementById('description').value = book.description;
+            document.getElementById('price').value = book.price;
+            document.getElementById('page_count').value = book.page_count;
+            document.getElementById('isbn').value = book.isbn;
+            document.getElementById('language').value = book.language;
+            document.getElementById('genre').value = book.genre;
+            document.getElementById('image_url').value = book.image_url;
+            document.getElementById('weight').value = book.weight;
+            document.getElementById('stock_status').value = book.stock_status;
+            document.getElementById('is_bestseller').checked = book.is_bestseller;
+            document.getElementById('discount').value = book.discount;
+            document.getElementById('featured_section').value = book.featured_section || '';
+        }
+
+        // Handle the form submission to save the edited book data
+        document.getElementById('edit-book-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            const response = await fetch(`/api/books/${data.book_id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+            alert(result.message);
+            window.location.href = '/admin/manage-books'; // Redirect to manage books page after saving changes
+        });
+
+        // Load the book data when the page loads
+        window.onload = loadBookData;
+    </script>
+</body>
+</html>

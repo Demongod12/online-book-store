@@ -27,7 +27,7 @@ exports.viewUsers = (req, res) => {
   const query = "SELECT * FROM Users";
   db.query(query, (err, result) => {
     if (err) throw err;
-    res.json(results);
+    res.json(result);
   });
 };
 

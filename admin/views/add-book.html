@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Book</title>
+  <link rel="stylesheet" href="../css/admin-style.css">
+</head>
+<body>
+  <header class="admin-header">
+    <h1>Admin Panel</h1>
+    <nav>
+      <ul>
+        <li><a href="admin-dashboard.html">Dashboard</a></li>
+        <li><a href="manage-books.html">Manage Books</a></li>
+        <li><a href="manage-users.html">Manage Users</a></li>
+        <li><a href="add-book.html" class="active">Add Book</a></li>
+        <li><a href="add-featured-Book.html">Add Featured Book</a></li>
+        <li><a href="logout.html">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="form-container">
+      <h2>Add a New Book</h2>
+      <form action="/add-book" method="POST" enctype="multipart/form-data">
+        <label for="name">Book Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" required>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="5"></textarea>
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" step="0.01" required>
+
+        <label for="page_count">Page Count:</label>
+        <input type="number" id="page_count" name="page_count" required>
+
+        <label for="weight">Weight (kg):</label>
+        <input type="number" id="weight" name="weight" step="0.01">
+
+        <label for="isbn">ISBN:</label>
+        <input type="text" id="isbn" name="isbn" required>
+
+        <label for="language">Language:</label>
+        <input type="text" id="language" name="language">
+
+        <label for="stock_status">Stock Status:</label>
+        <select id="stock_status" name="stock_status">
+          <option value="in_stock">In Stock</option>
+          <option value="out_of_stock">Out of Stock</option>
+        </select>
+
+        <label for="is_bestseller">Bestseller:</label>
+        <input type="checkbox" id="is_bestseller" name="is_bestseller">
+
+        <label for="discount">Discount (%):</label>
+        <input type="number" id="discount" name="discount" step="0.01">
+
+        <label for="image_url">Book Cover Image:</label>
+        <input type="file" id="image_url" name="image_url" accept="image/*">
+
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre" name="genre" required>
+
+        <label for="featured_section">Featured Section:</label>
+        <select id="featured_section" name="featured_section">
+          <option value="">None</option>
+          <option value="new_releases">New Releases</option>
+          <option value="bestsellers">Bestsellers</option>
+          <!-- Other sections as needed -->
+        </select>
+
+        <button type="submit" class="btn-submit">Add Book</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

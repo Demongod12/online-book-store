@@ -12,7 +12,7 @@ class Book {
       language,
       image_url,
       weight,
-      stock_statu,
+      stock_status,
       is_bestseller,
       discount,
     },

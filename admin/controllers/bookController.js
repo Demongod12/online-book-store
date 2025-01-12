@@ -1,5 +1,6 @@
 const db = require("../config/db");
 
+// Add a new book
 exports.addBook = (req, res) => {
   const {
     name,
@@ -9,8 +10,7 @@ exports.addBook = (req, res) => {
     page_count,
     isbn,
     language,
-    category_id,
-    genre_id,
+    genre, // genre as a simple text field
     image_url,
     weight,
     stock_status = "in_stock",
@@ -20,7 +20,7 @@ exports.addBook = (req, res) => {
   } = req.body;
 
   const query =
-    "INSERT INTO Books (image_url, name, author, description, price, page_count, weight, isbn, language, stock_status, is_bestseller, discount)VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    "INSERT INTO Books (image_url, name, author, description, price, page_count, weight, isbn, language, stock_status, is_bestseller, discount, genre) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
   db.query(
     query,
@@ -37,26 +37,13 @@ exports.addBook = (req, res) => {
       stock_status,
       is_bestseller,
       discount,
+      genre, // store genre as a text
     ],
     (err, result) => {
       if (err) throw err;
       const book_id = result.insertId;
 
-      //link book to category
-      const categoryQuery =
-        "INSERT INTO BookCategories (book_id, category_id) VALUES (?, ?)";
-      db.query(categoryQuery, [book_id, category_id], (err, result) => {
-        if (err) throw err;
-      });
-
-      //link book to genre
-      const genreQuery =
-        "INSERT INTO BookGenres (book_id, genre_id) VALUES (?, ?)";
-      db.query(genreQuery, [book_id, genre_id], (err, result) => {
-        if (err) throw err;
-      });
-
-      //optionally added book to featured section
+      // Optionally add the book to the featured section
       if (featured_section) {
         const featuredQuery =
           "INSERT INTO FeaturedBooks (book_id, section) VALUES (?, ?)";
@@ -70,16 +57,16 @@ exports.addBook = (req, res) => {
   );
 };
 
-//Get all books (for admin panel or user view)
+// Get all books (for admin panel or user view)
 exports.getAllBooks = (req, res) => {
   const query = "SELECT * FROM Books";
   db.query(query, (err, result) => {
     if (err) throw err;
-    res.json(results);
+    res.json(result); // Fixed 'results' to 'result'
   });
 };
 
-//Edit books details
+// Edit book details
 exports.editBook = (req, res) => {
   const {
     book_id,
@@ -93,15 +80,15 @@ exports.editBook = (req, res) => {
     stock_status,
     is_bestseller,
     discount,
-    category_id,
-    genre_id,
+    genre, // genre as a text field
     image_url,
     weight,
   } = req.body;
 
   // Update book details in Books table
   const query =
-    "UPDATE Books SET name = ?, author = ?, description = ?, price = ?, page_count = ?, isbn = ?, language = ?, stock_status = ?, is_bestseller = ?, discount = ?, image_url = ?, weight = ?WHERE book_id = ?;";
+    "UPDATE Books SET name = ?, author = ?, description = ?, price = ?, page_count = ?, isbn = ?, language = ?, stock_status = ?, is_bestseller = ?, discount = ?, image_url = ?, weight = ?, genre = ? WHERE book_id = ?";
+
   db.query(
     query,
     [
@@ -117,37 +104,24 @@ exports.editBook = (req, res) => {
       discount,
       image_url,
       weight,
+      genre, // update genre as text
       book_id,
     ],
     (err, result) => {
       if (err) throw err;
-
-      // Update category and genre links
-      const categoryQuery =
-        "UPDATE BookCategories SET category_id = ? WHERE book_id = ?";
-      db.query(categoryQuery, [category_id, book_id], (err, result) => {
-        if (err) throw err;
-      });
-
-      const genreQuery = "UPDATE BookGenres SET genre_id = ? WHERE book_id = ?";
-      db.query(genreQuery, [genre_id, book_id], (err, result) => {
-        if (err) throw err;
-      });
-
       res.redirect("/admin/manage-books");
     }
   );
 };
 
+// Delete a book
+exports.deleteBook = (req, res) => {
+  const { book_id } = req.params;
 
-//Delete a book
-exports.deleteBook = (req, res) =>{
-    const {book_id} = req.params;
-
-    //Delete book from Books table
-    const query = "DELETE FROM Books WHERE book_id = ?";
-    db.query(query, [book_id], (err, result) =>{
-        if (err) throw err;
-        res.redirect("/admin/manage-books");
-    });
+  // Delete book from Books table
+  const query = "DELETE FROM Books WHERE book_id = ?";
+  db.query(query, [book_id], (err, result) => {
+    if (err) throw err;
+    res.redirect("/admin/manage-books");
+  });
 };

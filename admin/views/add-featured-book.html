@@ -1,29 +1,45 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add Featured Book</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="container">
-      <h1>Add Featured Book</h1>
-      <form id="addFeaturedBookForm" method="POST" action="/admin/featured/add">
-        <select name="book_id">
-          <!-- Populate with books from DB -->
-          {{#each books}}
-          <option value="{{this.book_id}}">{{this.name}}</option>
-          {{/each}}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Featured Book</title>
+  <link rel="stylesheet" href="../css/admin-style.css">
+</head>
+<body>
+  <header class="admin-header">
+    <h1>Admin Panel</h1>
+    <nav>
+      <ul>
+        <li><a href="admin-dashboard.html">Dashboard</a></li>
+        <li><a href="add-featured-book.html" class="active">Add Featured Book</a></li>
+        <li><a href="logout.html">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="form-container">
+      <h2>Add Featured Book</h2>
+      <form action="/admin/add-featured-book" method="POST">
+        <label for="book_id">Book:</label>
+        <select id="book_id" name="book_id" required>
+          <!-- Dynamic options fetched from the database -->
+          <option value="1">Book 1</option>
+          <option value="2">Book 2</option>
         </select>
-        <select name="section">
+
+        <label for="section">Feature Section:</label>
+        <select id="section" name="section" required>
           <option value="Best Fiction">Best Fiction</option>
-          <option value="Top Trending">Top Trending</option>
-          <option value="Best Discounted">Best Discounted</option>
-          <option value="Best Sales">Best Sales</option>
+          <option value="Trending">Trending</option>
+          <option value="Discounted">Discounted</option>
+          <option value="Top Sales">Top Sales</option>
         </select>
-        <button type="submit">Add Featured Book</button>
+
+        <button type="submit" class="btn-submit">Add Featured Book</button>
       </form>
-    </div>
-  </body>
+    </section>
+  </main>
+</body>
 </html>

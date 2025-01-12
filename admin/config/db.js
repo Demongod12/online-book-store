@@ -1,16 +1,19 @@
-//link node.js to database
 const mysql = require('mysql');
 
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'bookstore'
+// Create the database connection
+const db = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '', // Your XAMPP MySQL password
+  database: 'bookstore',
 });
 
-connection.connect((err) => {
-    if (err) throw err;
-    console.log('connected to the database');
+db.connect((err) => {
+  if (err) {
+    console.error('Error connecting to database:', err);
+  } else {
+    console.log('Connected to MySQL database');
+  }
 });
 
-module.exports = connection;
+module.exports = { db };
