@@ -1,92 +1,253 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shop</title>
-  <link
-    href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="../css/shared.css">
-  <link rel="stylesheet" href="../css/shop.css">
-</head>
-<body>
-  <header>
-    <div class="nav-wrapper">
-      <!-- Logo Section -->
-      <div class="logo-container">
-        <img src="https://via.placeholder.com/40" alt="Bookly Logo" class="logo">
-        <span class="site-name">Bookly</span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop</title>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/shared.css" />
+    <link rel="stylesheet" href="../css/shop.css" />
+  </head>
+  <body>
+    <header>
+      <div class="nav-wrapper">
+        <!-- Logo Section -->
+        <div class="logo-container">
+          <img
+            src="https://via.placeholder.com/40"
+            alt="Bookly Logo"
+            class="logo"
+          />
+          <span class="site-name">Bookly</span>
+        </div>
+
+        <!-- Search Section -->
+        <div class="search-container">
+          <input
+            type="text"
+            class="search-input"
+            placeholder="Search here..."
+          />
+          <i class="bx bx-search search-icon"></i>
+        </div>
+
+        <!-- Icons Section -->
+        <div class="icons-container">
+          <i id="theme-icon" class="bx bx-sun"></i>
+          <i
+            class="bx bx-cart"
+            aria-label="View cart"
+            onclick="toggleCart()"
+          ></i>
+          <i class="bx bx-user" onclick="handleUserClick()"></i>
+        </div>
       </div>
 
-      <!-- Search Section -->
-      <div class="search-container">
-        <input type="text" class="search-input" placeholder="Search here...">
-        <i class='bx bx-search search-icon'></i>
+      <!-- Navigation Links -->
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="container">
+      <!-- Left Sidebar -->
+      <div class="sidebar">
+        <div class="filter-box">
+          <h3>Filter By</h3>
+          <div class="filter-options">
+            <ul>
+              <li><input type="checkbox" id="filter-all" /> All</li>
+              <li><input type="checkbox" id="filter-new" /> New Arrivals</li>
+              <li><input type="checkbox" id="filter-best" /> Best Seller</li>
+              <li>
+                <input type="checkbox" id="filter-discount" /> With Discount
+              </li>
+              <li><input type="checkbox" id="filter-in-stock" /> In Stock</li>
+              <li>
+                <input type="checkbox" id="filter-out-stock" /> Out of Stock
+              </li>
+            </ul>
+          </div>
+
+           <!-- Genre -->
+           <div class="genre-box">
+            <h4>Genre</h4>
+            <div class="genre-circles">
+              <!-- Genre with Image -->
+              <div class="genre-item">
+                <div class="genre-circle">
+                  <img src="../img/body/fiction-image.jpg" alt="Fiction" />
+                  <span>Fiction</span>
+                </div>
+              </div>
+              <div class="genre-item">
+                <div class="genre-circle">
+                  <img src="../img/body/mystery-image.jpg" alt="Mystery" />
+                  <span>Mystery</span>
+                </div>
+              </div>
+
+              <div class="genre-item">
+                <div class="genre-circle">
+                  <img src="../img/body/sci-fi-image.jpg" alt="Sci-Fi" />
+                  <span>Sci-Fi</span>
+                </div>
+              </div>
+              <div class="genre-item">
+                <div class="genre-circle">
+                  <img src="../img/body/romance-image.jpg" alt="Romance" />
+                  <span>Romance</span>
+                </div>
+              </div>
+
+              <div class="genre-item">
+                <div class="genre-circle">
+                  <img src="../img/body/fantasy-image.jpg" alt="Fantasy" />
+                  <span>Fantasy</span>
+                </div>
+              </div>
+              <div class="genre-item">
+                <div class="genre-circle">
+                  <img src="../img/body/non-fiction-image.jpg" alt="Non-Fiction" />
+                  <span>Non-Fiction</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+           <!-- Price Slider -->
+           <div class="price-slider">
+            <h4>Price</h4>
+            <input type="range" min="0" max="1000" value="0" id="priceRange" />
+            <span id="priceValue">$0</span>
+          </div>
+        </div>
       </div>
 
-      <!-- Icons Section -->
-      <div class="icons-container">
-        <i id="theme-icon" class="bx bx-sun"></i>
-        <i class='bx bx-cart' aria-label="View cart" onclick="toggleCart()"></i>
-        <i class='bx bx-user' onclick="handleUserClick()"></i>
+      <!-- Right Content (Books) -->
+      <div class="content" id="booksContainer">
+        <!-- Books will be dynamically inserted here -->
       </div>
     </div>
 
-    <!-- Navigation Links -->
-    <nav>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="shop.html">Shop</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+    <script>
+      // Fetch books from the backend
+      async function fetchBooks() {
+        const response = await fetch("/api/books");
+        const books = await response.json();
+        renderBooks(books);
+      }
 
-  <!--footer section-->
-  <footer class="wrapper-footer">
+      // Render books to the page
+      function renderBooks(books) {
+        const booksContainer = document.getElementById("booksContainer");
+        booksContainer.innerHTML = ""; // Clear existing content
 
-    <!--footer info: Brand and address-->
-    <div class="footer-brand-info">
-      <h1>Madnala</h1>
-      <p>East st-1990</p>
-      <p>Kathmandu,Thankot</p>
-    </div>
+        books.forEach((book) => {
+          const bookCard = document.createElement("div");
+          bookCard.classList.add("book-card");
+          bookCard.innerHTML = `
+                <img src="${book.image}" alt="${book.name}">
+                <h4>${book.name}</h4>
+                <p>$${book.price}</p>
+                <button onclick="addToCart(${book.id}, '${book.name}', ${book.price})">Add to Cart</button>
+            `;
+          booksContainer.appendChild(bookCard);
+        });
+      }
 
-    <!--footer links: navigation links-->
-    <div class="footer-nav-links">
-      <h1>Useful Links</h1>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="shop.html">Shop</a>
-    </div>
+      // Add book to cart
+      function addToCart(id, name, price) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    <!--footer additional information-->
-    <div class="footer-additional-information">
-      <h1>Information</h1>
-      <p>Supplies</p>
-      <p>New Products</p>
-      <p>Delivery & return</p>
-      <p>Gift cards</p>
-    </div>
+        const existingItem = cart.find((item) => item.id === id);
+        if (existingItem) {
+          existingItem.quantity++;
+        } else {
+          cart.push({ id, name, price, quantity: 1 });
+        }
 
-    <!--footer support and policies-->
-    <div class="footer-support">
-      <h1>Support</h1>
-      <p>privacy & policy</p>
-      <p>Support</p>
-      <p>Disclaimer</p>
-      <p>FAQ</p>
-    </div>
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCart();
+      }
 
-    <!--footer extra-->
-    <div class="footer-extra">
-      <p>@ 2025, book.com.np</p>
-    </div>
-  </footer>
-  <script src="../js/index.js"></script>
-  <script src="../node.js/function.js"></script>
-</body>
+      // Update cart UI
+      function updateCart() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const cartItemsList = document.getElementById("cartItems");
+        const cartTotal = document.getElementById("cartTotal");
+
+        cartItemsList.innerHTML = "";
+        let total = 0;
+        cart.forEach((item) => {
+          const cartItem = document.createElement("li");
+          cartItem.innerHTML = `${item.name} (x${item.quantity}) - $${item.price * item.quantity}`;
+          cartItemsList.appendChild(cartItem);
+          total += item.price * item.quantity;
+        });
+
+        cartTotal.textContent = `Total: $${total}`;
+      }
+
+      // Checkout button functionality (for demonstration)
+      document.getElementById("checkoutBtn").addEventListener("click", () => {
+        alert("Proceeding to checkout...");
+      });
+
+      // Initialize the page
+      fetchBooks();
+      updateCart();
+    </script>
+
+    <!--footer section-->
+    <footer class="wrapper-footer">
+      <!--footer info: Brand and address-->
+      <div class="footer-brand-info">
+        <h1>Madnala</h1>
+        <p>East st-1990</p>
+        <p>Kathmandu,Thankot</p>
+      </div>
+
+      <!--footer links: navigation links-->
+      <div class="footer-nav-links">
+        <h1>Useful Links</h1>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="shop.html">Shop</a>
+      </div>
+
+      <!--footer additional information-->
+      <div class="footer-additional-information">
+        <h1>Information</h1>
+        <p>Supplies</p>
+        <p>New Products</p>
+        <p>Delivery & return</p>
+        <p>Gift cards</p>
+      </div>
+
+      <!--footer support and policies-->
+      <div class="footer-support">
+        <h1>Support</h1>
+        <p>privacy & policy</p>
+        <p>Support</p>
+        <p>Disclaimer</p>
+        <p>FAQ</p>
+      </div>
+
+      <!--footer extra-->
+      <div class="footer-extra">
+        <p>@ 2025, book.com.np</p>
+      </div>
+    </footer>
+    <script src="../js/index.js"></script>
+    <script src="../node.js/function.js"></script>
+  </body>
 </html>

@@ -1,11 +1,15 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const { db } = require('./config/db');
-const userController = require('./controllers/userController');
-const adminController = require('./controllers/adminController');
-const { authMiddleware, adminMiddleware } = require('./middlewares/authMiddleware');
+const { db } = require('./admin/config/db');
+const userController = require('./admin/controllers/userController');
+const adminController = require('./admin/controllers/adminController');
+const { authMiddleware, adminMiddleware } = require('./admin/middlewares/authMiddleware');
 const app = express();
+const cors = require('cors');
+
+app.use(cors());
+
 
 // Set up the body parser middleware
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -74,7 +78,6 @@ app.use((req, res, next) => {
 });
 
 // Start the server
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}/`);
+app.listen(3000, () => {
+  console.log("Server is running on http://localhost:3000");
 });

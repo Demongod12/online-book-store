@@ -1,19 +1,31 @@
-const mysql = require('mysql');
+const mysql = require("mysql");
 
-// Create the database connection
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '', // Your XAMPP MySQL password
-  database: 'bookstore',
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "bookstore",
+  port: 3306
 });
 
 db.connect((err) => {
   if (err) {
-    console.error('Error connecting to database:', err);
+    console.error("Database connection failed:", err.stack);
+    return;
+  }
+  console.log("Connected to database");
+});
+
+// Example query
+connection.query('SELECT * FROM your_table', (err, results) => {
+  if (err) {
+    console.error('Error executing query:', err);
   } else {
-    console.log('Connected to MySQL database');
+    console.log('Query results:', results);
   }
 });
 
-module.exports = { db };
+// Close the connection
+connection.end();
+
+module.exports = db;

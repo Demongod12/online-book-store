@@ -4,14 +4,14 @@ const jwt = require("jsonwebtoken");
 
 // User registration
 exports.registerUser = (req, res) => {
-  const { email, password, name } = req.body;
+  const { username, password, name } = req.body;
 
-  // Check if email already exists
-  const emailCheckQuery = "SELECT * FROM Users WHERE email = ?";
-  db.query(emailCheckQuery, [email], (err, results) => {
+  // Check if username already exists
+  const usernameCheckQuery = "SELECT * FROM Users WHERE username = ?";
+  db.query(usernameCheckQuery, [username], (err, results) => {
     if (err) throw err;
     if (results.length > 0) {
-      return res.status(400).json({ message: "Email already exists" });
+      return res.status(400).json({ message: "Username already exists" });
     }
 
     // Hash the password
@@ -20,8 +20,8 @@ exports.registerUser = (req, res) => {
 
       // Insert new user
       const query =
-        "INSERT INTO Users (email, password, name) VALUES (?, ?, ?)";
-      db.query(query, [email, hashedPassword, name], (err, result) => {
+        "INSERT INTO Users (username, password, name) VALUES (?, ?, ?)";
+      db.query(query, [username, hashedPassword, name], (err, result) => {
         if (err) throw err;
         res.status(201).json({ message: "User registered successfully" });
       });
@@ -31,10 +31,10 @@ exports.registerUser = (req, res) => {
 
 // User login
 exports.loginUser = (req, res) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
 
-  const query = "SELECT * FROM Users WHERE email = ?";
-  db.query(query, [email], (err, results) => {
+  const query = "SELECT * FROM Users WHERE username = ?";
+  db.query(query, [username], (err, results) => {
     if (err) throw err;
     if (results.length === 0) {
       return res.status(400).json({ message: "User not found" });
@@ -49,7 +49,7 @@ exports.loginUser = (req, res) => {
 
       // Generate JWT token
       const token = jwt.sign(
-        { user_id: user.user_id, email: user.email, role: user.role }, // Payload
+        { user_id: user.user_id, username: user.username, role: user.role }, // Payload
         "your_secret_key", // Replace with your secret key
         { expiresIn: "1h" } // Set token expiry
       );
@@ -65,7 +65,7 @@ exports.loginUser = (req, res) => {
 
 // Update user profile
 exports.updateProfile = (req, res) => {
-  const { user_id, name, email } = req.body;
+  const { user_id, name, username } = req.body;
 
   // Check if the user exists first
   const checkUserQuery = "SELECT * FROM Users WHERE user_id = ?";
@@ -76,8 +76,8 @@ exports.updateProfile = (req, res) => {
     }
 
     // Update user details
-    const query = "UPDATE Users SET name = ?, email = ? WHERE user_id = ?";
-    db.query(query, [name, email, user_id], (err, result) => {
+    const query = "UPDATE Users SET name = ?, username = ? WHERE user_id = ?";
+    db.query(query, [name, username, user_id], (err, result) => {
       if (err) throw err;
       if (result.affectedRows === 0) {
         return res.status(400).json({ message: "No changes made to profile" });
