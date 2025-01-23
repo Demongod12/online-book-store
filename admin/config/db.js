@@ -14,18 +14,18 @@ db.connect((err) => {
     return;
   }
   console.log("Connected to database");
-});
 
-// Example query
-connection.query('SELECT * FROM your_table', (err, results) => {
-  if (err) {
-    console.error('Error executing query:', err);
-  } else {
-    console.log('Query results:', results);
-  }
-});
+  // Example query
+  db.query('SELECT * FROM your_table', (err, results) => {
+    if (err) {
+      console.error('Error executing query:', err);
+    } else {
+      console.log('Query results:', results);
+    }
 
-// Close the connection
-connection.end();
+    // Close the connection after the query
+    db.end();
+  });
+});
 
 module.exports = db;
