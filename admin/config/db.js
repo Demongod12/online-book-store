@@ -3,7 +3,7 @@ const mysql = require("mysql");
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "",
+  password: "",         // no password
   database: "bookstore",
   port: 3306
 });
@@ -15,15 +15,15 @@ db.connect((err) => {
   }
   console.log("Connected to database");
 
-  // Example query
-  db.query('SELECT * FROM your_table', (err, results) => {
+  // Optional: Test with a real query
+  db.query('SELECT * FROM Books', (err, results) => {
     if (err) {
       console.error('Error executing query:', err);
     } else {
-      console.log('Query results:', results);
+      console.log('Books data:', results);
     }
 
-    // Close the connection after the query
+    // End connection after test
     db.end();
   });
 });

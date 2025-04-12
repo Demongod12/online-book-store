@@ -24,9 +24,27 @@ app.set('views', path.join(__dirname, 'views'));
 
 // Routes
 // Home Route (for the user)
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'html', 'index.html'));
+
+app.get('/about', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'html', 'about.html'));
 });
+
+app.get('/shop', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'html', 'shop.html'));
+});
+
+app.get('/contact', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'html', 'contact.html'));
+});
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'html', 'index.html'));
+});
+
+app.get('/login.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'html', 'login.html'));
+});
+
 
 // Login Route
 app.post('/login', userController.loginUser);

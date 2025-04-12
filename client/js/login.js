@@ -59,7 +59,7 @@ document.getElementById('signup-form').addEventListener('submit', async (event) 
 // Login form validation and submission
 document.getElementById('login-form').addEventListener('submit', async (event) => {
   event.preventDefault();
-  const username = document.getElementById('users').value.trim();
+  const username = document.getElementById('user').value.trim();
   const password = document.getElementById('password').value.trim();
 
   let isValid = true;
@@ -92,9 +92,16 @@ document.getElementById('login-form').addEventListener('submit', async (event) =
       const data = await response.json();
       if (data.success) {
         alert('Login successful!');
-        localStorage.setItem('isLoggedIn', 'true'); 
-        window.location.href = 'index.html'; // Redirect to dashboard or home
-      } else {
+        localStorage.setItem('isLoggedIn', 'true');
+      
+        // Redirect based on the username
+        if (username.toLowerCase() === 'admin') {
+          window.location.href = 'admin.html'; // Redirect to admin page
+        } else {
+          window.location.href = 'index.html'; // Redirect to user home page
+        }
+      }
+      else {
         alert('Login failed!');
       }
     } catch (error) {
