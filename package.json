@@ -2,10 +2,34 @@
     "name": "your-app-name",
     "version": "1.0.0",
     "scripts": {
-      "start": "node server.js"
+        "start": "node server.js"
     },
     "dependencies": {
-      "express": "^4.17.1"
+        "bcrypt": "^6.0.0",
+        "body-parser": "^2.2.2",
+        "cors": "^2.8.5",
+        "dotenv": "^17.2.3",
+        "express": "^4.22.1",
+        "jsonwebtoken": "^9.0.3",
+        
+        "mysql2": "^3.16.0",
+        "pg": "^8.16.3"
+    },
+    "description": "",
+    "main": "hashPassword.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Demongod12/online-book-store.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "commonjs",
+    "bugs": {
+        "url": "https://github.com/Demongod12/online-book-store/issues"
+    },
+    "homepage": "https://github.com/Demongod12/online-book-store#readme",
+    "devDependencies": {
+        "nodemon": "^3.1.11"
     }
-  }
-  
+}

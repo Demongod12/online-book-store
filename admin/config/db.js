@@ -1,31 +1,24 @@
-const mysql = require("mysql");
+const mysql = require("mysql2");
 
-const db = mysql.createConnection({
+const db = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "",         // no password
+  password: "",
   database: "bookstore",
-  port: 3306
+  port: 3306,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
-db.connect((err) => {
+// Test connection (safe)
+db.getConnection((err, connection) => {
   if (err) {
-    console.error("Database connection failed:", err.stack);
-    return;
+    console.error("❌ Database connection failed:", err.message);
+  } else {
+    console.log("✅ Connected to database");
+    connection.release();
   }
-  console.log("Connected to database");
-
-  // Optional: Test with a real query
-  db.query('SELECT * FROM Books', (err, results) => {
-    if (err) {
-      console.error('Error executing query:', err);
-    } else {
-      console.log('Books data:', results);
-    }
-
-    // End connection after test
-    db.end();
-  });
 });
 
 module.exports = db;

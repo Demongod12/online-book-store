@@ -1,4 +1,4 @@
-admin/
+/*admin/
  config/
   db.js
  controllers/
@@ -53,3 +53,4 @@ user/
  home.html
  package.json
  ReadStream.nd
+ */
